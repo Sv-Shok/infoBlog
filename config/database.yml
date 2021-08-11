@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: roman
+  password: 1234
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: infoBlog_development
+
+test:
+  <<: *default
+  database: infoBlog_test
+
+production:
+  <<: *default
+  database: infoBlog_production
+  username: infoBlog
+  password: <%= ENV['INFOBLOG_DATABASE_PASSWORD'] %>
