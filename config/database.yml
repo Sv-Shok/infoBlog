@@ -15,8 +15,8 @@ test:
   <<: *default
   database: infoBlog_test
 
-production:
-  <<: *default
-  database: infoBlog_production
-  username: infoBlog
-  password: <%= ENV['INFOBLOG_DATABASE_PASSWORD'] %>
+#production:
+#  <<: *default
+#  database: infoBlog_production
+#  username: infoBlog
+#  password: <%#= ENV['INFOBLOG_DATABASE_PASSWORD'] %>

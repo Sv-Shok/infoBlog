@@ -5,12 +5,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <header>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h4 class="my-0 mr-md-auto font-weight-bold">InfoBlog</h4>
+      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <span class="p-2 text-dark"><%= link_to "Home page", home_path%></span>
+        <span class="p-2 text-dark"><%= link_to "About Us", about_path%></span>
+        <span class="p-2 text-dark"><%= link_to "Add article", new_post_path%></span>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>
