@@ -5,16 +5,25 @@ class PostsController < ApplicationController
     @post = Post.all
   end
 
-  def new
-    @post = Post.new
-  end
-
   def show
     @post = Post.find(params[:id])
   end
 
+  def new
+    @post = Post.new
+  end
+
   def edit
     @post = Post.find(params[:id])
+  end
+
+  def create
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to @post
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -31,16 +40,6 @@ class PostsController < ApplicationController
 
     @post.destroy
     redirect_to posts_path
-  end
-
-  def create
-    @post = Post.new(post_params)
-    @post.save
-    if @post.save
-      redirect_to @post
-    else
-      render 'new'
-    end
   end
 
   private
