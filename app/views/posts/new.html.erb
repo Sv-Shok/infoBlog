@@ -1,5 +1,5 @@
 <h2>Add new post</h2>
-<%= form_for :post, url: posts_path do |f| %>
+<%= simple_form_for :post, url: posts_path do |f| %>
 <% if @post.errors.any? %>
   <% @post.errors.full_messages.each do |msg| %>
     <div class="alert alert-danger">
@@ -7,15 +7,13 @@
     </div>
   <% end %>
 <% end %>
-<p>
-  Name</br>
-  <%= f.text_field(:title, {class:'form-control'}) %>
-</p>
-<p>
-  Text article</br>
-  <%= f.text_area(:body, {class:'form-control'}) %>
-</p>
-<p>
-  <%= f.submit({class:'btn btn-success'}) %>
-</p>
+  <p>
+    <%= f.input :title, label: "Post name:", input_html:{class:'form-control'} %>
+  </p>
+  <p>
+    <%= f.input :body, as: :text, label: "Post text:", input_html:{class:'form-control'} %>
+  </p>
+  <p>
+    <%= f.button :submit, "Save post", class:'btn btn-success'%>
+  </p>
 <% end %>
