@@ -4,22 +4,8 @@
 <%= link_to "Edit post", edit_post_path(@post), class: 'btn btn-warning' %>
 <%= link_to "Delete post", post_path(@post), method: :delete, data:{confirm: "Do you want to delete the Article? "}, class:'btn btn-danger' %>
 <hr>
-<h2>All comments</h2>
-<% @post.comments.each do |comment|%>
-  <div class="alert alert-light">
-    <p><strong><%= comment.username%></strong>: <%= comment.body%></p>
-  </div>
-<% end %>
+<h3>All comments</h3>
+<%= render @post.comments %>
 <hr>
 <h4>Add comment</h4>
-<%= simple_form_for([@post, @post.comments.build])do |f| %>
-  <p>
-    <%= f.input :username, label: "User name:", input_html:{class:'form-control'} %>
-  </p>
-  <p>
-    <%= f.input :body, as: :text, label: "Comment text:", input_html:{class:'form-control'} %>
-  </p>
-  <p>
-    <%= f.button :submit, "Add comment", class:'btn btn-warning'%>
-  </p>
-<% end %>
+<%= render 'comments/form' %>
