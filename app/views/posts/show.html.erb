@@ -3,10 +3,14 @@
     <h5 class="card-title"><%= @post.title %></h5>
     <p class="card-text"><%= @post.body %></p>
     <hr>
-    <%= link_to "Edit post", edit_post_path(@post), class: 'btn btn-warning' %>
-    <%= link_to "Delete post", post_path(@post), method: :delete,
-                data:{confirm: "Do you want to delete the Article? "},
-                class:'btn btn-danger' %>
+    <p class="lead">Author -<span class="text-info"> <%= @post_owner.email %></span></p>
+    <% if !current_user.nil? && @post_owner.email == current_user.email %>
+      <hr>
+      <%= link_to "Edit post", edit_post_path(@post), class: 'btn btn-warning' %>
+      <%= link_to "Delete post", post_path(@post), method: :delete,
+                  data:{confirm: "Do you want to delete the Article? "},
+                  class:'btn btn-danger' %>
+    <% end %>
   </div>
 </div>
 

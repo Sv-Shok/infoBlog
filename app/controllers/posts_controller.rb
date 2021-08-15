@@ -1,12 +1,13 @@
 class PostsController < ApplicationController
-  # http_basic_authenticate_with name: 'admin', password: '1234', except: %i[index show]
   before_action :authenticate_user!, except: %i[index show]
+  before_action :correct_user, only: %i[edit update destroy]
   def index
     @post = Post.all
   end
 
   def show
     @post = Post.find(params[:id])
+    @post_owner = User.find(@post.user_id)
   end
 
   def new
@@ -41,6 +42,11 @@ class PostsController < ApplicationController
 
     @post.destroy
     redirect_to posts_path
+  end
+
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to posts_path, notice: 'Not Authorized To Edit This Post' if @post.nil?
   end
 
   private
