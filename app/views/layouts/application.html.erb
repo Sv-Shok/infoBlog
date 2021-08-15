@@ -12,16 +12,46 @@
 
   <body>
   <header>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <h4 class="my-0 mr-md-auto font-weight-bold">InfoBlog</h4>
-      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <span class="p-2 text-dark"><%= link_to "Home page", home_path%></span>
-        <span class="p-2 text-dark"><%= link_to "About Us", about_path%></span>
-        <span class="p-2 text-dark"><%= link_to "Add post", new_post_path%></span>
-      </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+      <div class="container">
+        <%= link_to "InfoBlog", home_path, class:'navbar-brand'%>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item <%= 'active' if current_page?(home_path) %>">
+              <%= link_to "Home page", home_path, class:"nav-link active"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "About Us", about_path, class:"nav-link"%>
+            </li>
+            <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Edit Profile", edit_user_registration_path, class:"nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Add post", new_post_path, class:"nav-link"%>
+            </li>
+              <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign Up", new_user_registration_path, class:"nav-link"%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign In", new_user_session_path, class:"nav-link"%>
+            </li>
+              <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
   <div class="container">
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </div>
   </body>

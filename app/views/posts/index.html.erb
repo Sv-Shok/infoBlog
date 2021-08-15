@@ -1,9 +1,11 @@
 <h1>All posts</h1>
 <% @post.each do |post|%>
-<div class="alert alert-light">
-
-</div>
-  <h3><%= post.title %></h3>
-  <p><%= post.body %></p>
-  <%= link_to "Read on", post_path(post), {class: 'btn btn-outline-primary'}%>
+<div class="alert alert-light"></div>
+  <div class="card w-75">
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.body %></p>
+      <%= link_to "Read on", post_path(post), class: 'btn btn-outline-primary'%>
+    </div>
+  </div>
 <% end %>

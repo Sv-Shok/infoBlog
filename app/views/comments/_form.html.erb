@@ -1,11 +1,17 @@
+<div class="container">
+  <div class="form-group mx-5">
+<h4>Add comment</h4>
 <%= simple_form_for([@post, @post.comments.build])do |f| %>
-  <p>
-    <%= f.input :username, label: "User name:", input_html:{class:'form-control'} %>
-  </p>
-  <p>
-    <%= f.input :body, as: :text, label: "Comment text:", input_html:{class:'form-control'} %>
-  </p>
-  <p>
-    <%= f.button :submit, "Add comment", class:'btn btn-warning'%>
-  </p>
+
+      <p>
+        <%= f.input :username, label: "User name:", input_html:{class:'form-control'} %>
+      </p>
+      <p>
+        <%= f.input :body, as: :text, label: "Comment text:", input_html:{class:'form-control'} %>
+      </p>
+      <p>
+        <%= f.button :submit, "Add comment", class:'btn btn-warning'%>
+      </p>
 <% end %>
+  </div>
+</div>
