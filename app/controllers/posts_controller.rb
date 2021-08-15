@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   # http_basic_authenticate_with name: 'admin', password: '1234', except: %i[index show]
-
+  before_action :authenticate_user!, except: %i[index show]
   def index
     @post = Post.all
   end
@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     if @post.save
       redirect_to @post
     else
@@ -45,6 +46,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :user_id)
   end
 end
